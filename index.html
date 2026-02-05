@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>老板说话可信度测评</title>
+  <meta name="description" content="3分钟测出：你老板的承诺/反馈/安排到底靠不靠谱。输出风险等级 + 可执行建议。" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">🧭</div>
+      <div>
+        <div class="title">老板说话可信度测评</div>
+        <div class="subtitle">输入你遇到的真实场景，3 分钟生成报告</div>
+      </div>
+    </div>
+    <button id="btnResetTop" class="btn ghost" type="button" title="重置">重置</button>
+  </header>
+
+  <main class="container">
+    <!-- Landing -->
+    <section id="screenLanding" class="card">
+      <h1>老板说的这句「话」到底算不算数？</h1>
+      <p class="muted">
+        这不是“算命”，是把常见管理话术拆成可观察信号：<b>承诺质量</b>、<b>资源兑现</b>、<b>反馈明确</b>、<b>风险转嫁</b>。
+      </p>
+
+      <div class="grid2">
+        <div class="mini">
+          <div class="mini-h">你会得到</div>
+          <ul>
+            <li>可信度等级（A/B/C/D）</li>
+            <li>4 维度雷达式拆解（文字版）</li>
+            <li>3 条可执行应对动作</li>
+          </ul>
+        </div>
+        <div class="mini">
+          <div class="mini-h">适用场景</div>
+          <ul>
+            <li>“你先推进/再看看/资源紧张”</li>
+            <li>“后面给你机会/给你加人”</li>
+            <li>“你先扛一下/我来协调”</li>
+          </ul>
+        </div>
+      </div>
+
+      <button id="btnStart" class="btn primary" type="button">开始测评</button>
+      <div class="small muted">提示：建议用手机打开，测完可截图分享。</div>
+    </section>
+
+    <!-- Quiz -->
+    <section id="screenQuiz" class="card hidden">
+      <div class="row between">
+        <div>
+          <h2>填写信息</h2>
+          <div class="muted small">共 9 题，预计 2-3 分钟</div>
+        </div>
+        <div class="progress">
+          <div id="progressBar" class="bar"></div>
+        </div>
+      </div>
+
+      <form id="quizForm" class="form">
+        <div class="field">
+          <label>你想评估的“那句话”是什么？（可选）</label>
+          <input id="inpQuote" type="text" placeholder="例如：你先推进，我这边再看看资源" maxlength="60" />
+        </div>
+
+        <div class="field">
+          <label>发生的场景（必选）</label>
+          <div class="seg" role="group">
+            <label><input type="radio" name="scene" value="deliver" required> 交付/项目推进</label>
+            <label><input type="radio" name="scene" value="perf"> 绩效/晋升/认可</label>
+            <label><input type="radio" name="scene" value="resource"> 资源/人手/预算</label>
+            <label><input type="radio" name="scene" value="conflict"> 冲突/背锅/责任</label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>这句话的“承诺形式”更像哪种？（必选）</label>
+          <div class="seg">
+            <label><input type="radio" name="promise" value="clear" required> 具体承诺（时间/标准/负责人清晰）</label>
+            <label><input type="radio" name="promise" value="vague"> 模糊承诺（“后面/到时/看情况”）</label>
+            <label><input type="radio" name="promise" value="push"> 推进型话术（“你先做/先顶上”）</label>
+            <label><input type="radio" name="promise" value="emotion"> 情绪安抚（“辛苦你/我理解/先稳住”）</label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>有没有明确的“下一步动作”？（必选）</label>
+          <div class="seg">
+            <label><input type="radio" name="nextstep" value="owner_time" required> 有：谁做+什么时候给结果</label>
+            <label><input type="radio" name="nextstep" value="only_time"> 有时间但没负责人/没动作</label>
+            <label><input type="radio" name="nextstep" value="none"> 没有：只让你继续等/继续干</label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>你是否拿到“可验证的结果定义”？（必选）</label>
+          <div class="seg">
+            <label><input type="radio" name="definition" value="clear" required> 清晰：验收标准/口径明确</label>
+            <label><input type="radio" name="definition" value="partial"> 部分：有方向没标准</label>
+            <label><input type="radio" name="definition" value="none"> 没有：做了也不知道算不算</label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>过去 30 天，他/她“说到做到”的比例？（必选）</label>
+          <div class="seg">
+            <label><input type="radio" name="history" value="high" required> 80% 以上</label>
+            <label><input type="radio" name="history" value="mid"> 50% 左右</label>
+            <label><input type="radio" name="history" value="low"> 20% 以下/经常变</label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>这件事涉及“资源兑现”吗？（必选）</label>
+          <div class="seg">
+            <label><input type="radio" name="resource" value="none" required> 不涉及</label>
+            <label><input type="radio" name="resource" value="promised"> 说会给（人/钱/权限/跨部门支持）</label>
+            <label><input type="radio" name="resource" value="blocked"> 明确不给/资源紧张/要你自消化</label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>这句话会不会把风险/责任“丢给你”？（必选）</label>
+          <div class="seg">
+            <label><input type="radio" name="risk" value="low" required> 低：责任边界清晰</label>
+            <label><input type="radio" name="risk" value="mid"> 中：你主扛，但他/她会兜底</label>
+            <label><input type="radio" name="risk" value="high"> 高：你全扛，且后果不确定</label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>你现在更需要的是？（必选）</label>
+          <div class="seg">
+            <label><input type="radio" name="need" value="clarify" required> 把话说清楚（口径/标准/边界）</label>
+            <label><input type="radio" name="need" value="protect"> 自保（留痕/降风险/别背锅）</label>
+            <label><input type="radio" name="need" value="leverage"> 借力（要资源/要授权/要人）</label>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button id="btnBack" class="btn ghost" type="button">返回</button>
+          <button id="btnCalc" class="btn primary" type="submit">生成报告</button>
+        </div>
+
+        <div class="small muted">
+          我们只用“可观察信号”算分：承诺是否具体、是否给出可验证的下一步、资源是否兑现、风险是否转嫁。
+        </div>
+      </form>
+    </section>
+
+    <!-- Report -->
+    <section id="screenReport" class="card hidden">
+      <div class="row between">
+        <div>
+          <h2>测评报告</h2>
+          <div id="reportMeta" class="muted small"></div>
+        </div>
+        <button id="btnReset" class="btn ghost" type="button">再测一次</button>
+      </div>
+
+      <div class="scoreBox">
+        <div>
+          <div class="muted small">可信度总分（0-100）</div>
+          <div id="score" class="score">--</div>
+        </div>
+        <div class="badgeWrap">
+          <div id="grade" class="badge">--</div>
+          <div id="tagline" class="muted small"></div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="grid2">
+        <div class="panel">
+          <div class="panel-h">四维拆解</div>
+          <div id="dims" class="dims"></div>
+        </div>
+        <div class="panel">
+          <div class="panel-h">你现在最该做的 3 件事</div>
+          <ol id="actionsList" class="olist"></ol>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="share">
+        <div class="share-h">分享/留痕（建议截图）</div>
+        <textarea id="shareText" class="shareText" readonly></textarea>
+        <div class="row gap">
+          <button id="btnCopy" class="btn primary" type="button">复制结果文案</button>
+          <button id="btnCopyLink" class="btn ghost" type="button">复制当前链接</button>
+        </div>
+        <div id="copyHint" class="small muted"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="muted small">
+      说明：这是规则测评工具，不调用大模型。你可以把它当作“把经验写成可执行的判断表”。
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
